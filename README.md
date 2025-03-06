@@ -69,15 +69,49 @@ def build_model():
 - The preprocessed images are flattened and then transformed using PCA to reduce the number of features.
 - Example:
 ```python
-            num_samples = processed_images.shape[0]
-            images_flat = processed_images.reshape(num_samples, -1)  # Flatten images
-            from sklearn.decomposition import PCA
-            pca = PCA(n_components=300, random_state=42)
-            images_pca = pca.fit_transform(images_flat)
+    num_samples = processed_images.shape[0]
+    images_flat = processed_images.reshape(num_samples, -1)  # Flatten images
+    from sklearn.decomposition import PCA
+    pca = PCA(n_components=300, random_state=42)
+    images_pca = pca.fit_transform(images_flat)
 ```
 - The PCA-reduced data is then split and used to train classical models (e.g., a Decision Tree).
 
+## Model Evaluation
+- **Evaluation Metrics:** 
+    Accuracy, Precision, Recall, F1-score, and AUC-ROC are computed.
+- A custom evaluation function is used:
+```python
+def evaluate_model_performance(test_labels, y_pred, y_probs):
+    test_labels = np.array(test_labels)
+    accuracy = accuracy_score(test_labels, y_pred)
+    precision = precision_score(test_labels, y_pred)
+    recall = recall_score(test_labels, y_pred)
+    f1 = f1_score(test_labels, y_pred)
+    auc = roc_auc_score(test_labels, y_probs)
+    print("📊 Model Performance Metrics on Test Set:")
+    print(f"✅ Accuracy:  {accuracy:.4f}")
+    print(f"✅ Precision: {precision:.4f}")
+    print(f"✅ Recall:    {recall:.4f}")
+    print(f"✅ F1-score:  {f1:.4f}")
+    print(f"✅ AUC-ROC:   {auc:.4f}")
+```
+- For the CNN model, predictions are made using model.predict(), and probabilities are thresholded to get binary predictions.
 
+## Fine-Tuning and Hyperparameter Tuning
+-**Fine-Tuning:**
+- Misclassified examples are identified using a confusion matrix.
+- These hard examples are merged back with the original training data and used for additional training (fine-tuning) to help the model learn from its mistakes.
 
+-**Hyperparameter Tuning:**
+- Experiments are conducted on parameters such as learning rate, batch size, and dropout rate to see their effect on performance.
 
+## Usage
+1. Run the preprocessing scripts to resize, normalize, and split the data.
+2. Train the models (CNN and/or classical ML on PCA-reduced data) using the provided code.
+3. Evaluate the models using the custom evaluation function.
+4. Fine-Tune the model on misclassified examples for improved performance.
+
+## Conclusion
+This project demonstrates a complete pipeline for image classification using the Dogs vs. Cats dataset, covering data preprocessing, EDA, model building, dimensionality reduction, evaluation, and fine-tuning. It highlights the impact of data quality, model architecture, and hyperparameter choices on overall performance.
 
