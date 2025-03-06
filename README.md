@@ -66,16 +66,16 @@ def build_model():
 ```
 ## Dimensionality Reduction
 ### PCA:
-The preprocessed images are flattened and then transformed using PCA to reduce the number of features.
-Example:
-     ```python
+- The preprocessed images are flattened and then transformed using PCA to reduce the number of features.
+- Example:
+```python
             num_samples = processed_images.shape[0]
             images_flat = processed_images.reshape(num_samples, -1)  # Flatten images
             from sklearn.decomposition import PCA
             pca = PCA(n_components=300, random_state=42)
             images_pca = pca.fit_transform(images_flat)
-     ```
-The PCA-reduced data is then split and used to train classical models (e.g., a Decision Tree).
+```
+- The PCA-reduced data is then split and used to train classical models (e.g., a Decision Tree).
 
 
 
