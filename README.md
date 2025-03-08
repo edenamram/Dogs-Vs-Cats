@@ -99,11 +99,11 @@ def evaluate_model_performance(test_labels, y_pred, y_probs):
 - For the CNN model, predictions are made using model.predict(), and probabilities are thresholded to get binary predictions.
 
 ## Fine-Tuning and Hyperparameter Tuning
--**Fine-Tuning:**
+- **Fine-Tuning:**
 - Misclassified examples are identified using a confusion matrix.
 - These hard examples are merged back with the original training data and used for additional training (fine-tuning) to help the model learn from its mistakes.
 
--**Hyperparameter Tuning:**
+- **Hyperparameter Tuning:**
 - Experiments are conducted on parameters such as learning rate, batch size, and dropout rate to see their effect on performance.
 
 ## Usage
