@@ -14,7 +14,7 @@ This project uses the Kaggle Dogs vs. Cats dataset to build an image classificat
 - [Conclusion](#conclusion)
 
 ## Dataset
-- **Source:** Kaggle Dogs vs. Cats dataset.
+- **Source:** Kaggle Dogs vs. Cats dataset: https://www.kaggle.com/competitions/dogs-vs-cats/overview.
 - **Description:** Contains images of dogs and cats with filenames indicating the class (e.g., `cat.1234.jpg` or `dog.5678.jpg`).
 
 ## Data Preprocessing
